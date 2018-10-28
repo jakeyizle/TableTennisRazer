@@ -1,0 +1,58 @@
+﻿@page
+@model TableTennisRazer.Pages.FourPersonMatches.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>FourPersonMatch</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FourPersonMatch.WinningPersonTwo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FourPersonMatch.WinningPersonTwo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FourPersonMatch.LosingPersonTwo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FourPersonMatch.LosingPersonTwo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FourPersonMatch.WinningScore)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FourPersonMatch.WinningScore)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FourPersonMatch.LosingScore)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FourPersonMatch.LosingScore)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FourPersonMatch.WinningPersonOne)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FourPersonMatch.WinningPersonOne)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FourPersonMatch.LosingPersonOne)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FourPersonMatch.LosingPersonOne)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="FourPersonMatch.MatchID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

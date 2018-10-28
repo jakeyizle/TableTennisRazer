@@ -1,0 +1,55 @@
+﻿@page
+@model TableTennisRazer.Pages.FourPersonMatches.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FourPersonMatch</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FourPersonMatch.WinningPersonTwo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FourPersonMatch.WinningPersonTwo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FourPersonMatch.LosingPersonTwo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FourPersonMatch.LosingPersonTwo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FourPersonMatch.WinningScore)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FourPersonMatch.WinningScore)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FourPersonMatch.LosingScore)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FourPersonMatch.LosingScore)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FourPersonMatch.WinningPersonOne)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FourPersonMatch.WinningPersonOne)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FourPersonMatch.LosingPersonOne)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FourPersonMatch.LosingPersonOne)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.FourPersonMatch.MatchID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

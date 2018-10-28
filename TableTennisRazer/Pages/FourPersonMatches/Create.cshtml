@@ -1,0 +1,59 @@
+﻿@page
+@model TableTennisRazer.Pages.FourPersonMatches.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>FourPersonMatch</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FourPersonMatch.WinningPersonOne" class="control-label"></label>
+                <input asp-for="FourPersonMatch.WinningPersonOne" class="form-control" />
+                <span asp-validation-for="FourPersonMatch.WinningPersonOne" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FourPersonMatch.WinningPersonTwo" class="control-label"></label>
+                <input asp-for="FourPersonMatch.WinningPersonTwo" class="form-control" />
+                <span asp-validation-for="FourPersonMatch.WinningPersonTwo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FourPersonMatch.LosingPersonOne" class="control-label"></label>
+                <input asp-for="FourPersonMatch.LosingPersonOne" class="form-control" />
+                <span asp-validation-for="FourPersonMatch.LosingPersonOne" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FourPersonMatch.LosingPersonTwo" class="control-label"></label>
+                <input asp-for="FourPersonMatch.LosingPersonTwo" class="form-control" />
+                <span asp-validation-for="FourPersonMatch.LosingPersonTwo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FourPersonMatch.WinningScore" class="control-label"></label>
+                <input asp-for="FourPersonMatch.WinningScore" class="form-control" />
+                <span asp-validation-for="FourPersonMatch.WinningScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FourPersonMatch.LosingScore" class="control-label"></label>
+                <input asp-for="FourPersonMatch.LosingScore" class="form-control" />
+                <span asp-validation-for="FourPersonMatch.LosingScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
