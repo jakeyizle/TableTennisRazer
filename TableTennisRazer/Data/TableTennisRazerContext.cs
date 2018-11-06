@@ -18,8 +18,10 @@ namespace TableTennisRazer.Models
 
         public DbSet<TableTennisRazer.Models.Match> Match { get; set; }
 
-        public DbSet<TableTennisRazer.Models.TwoPersonMatch> TwoPersonMatch { get; set; }
-
-        public DbSet<TableTennisRazer.Models.FourPersonMatch> FourPersonMatch { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<MatchPerson>()
+                .HasKey(c => new { c.PersonId, c.MatchId });
+        }
     }
 }

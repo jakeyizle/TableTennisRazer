@@ -11,9 +11,12 @@ namespace TableTennisRazer.Models
     public class Person
     {
         [Key]
+        public int PersonId { get; set; }
         public string PersonName { get; set; }
         public double Mean { get; set; }
         public double StandardDeviation { get; set; }
+        public virtual ICollection<MatchPerson> MatchPeople { get; set; }
+
 
         public Person()
         {

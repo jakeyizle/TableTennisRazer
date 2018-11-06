@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using TableTennisRazer.Models;
 
-namespace TableTennisRazer.Pages.TwoPersonMatches
+namespace TableTennisRazer.Pages.Matches
 {
     public class IndexModel : PageModel
     {
@@ -18,11 +18,11 @@ namespace TableTennisRazer.Pages.TwoPersonMatches
             _context = context;
         }
 
-        public IList<TwoPersonMatch> TwoPersonMatch { get;set; }
+        public IList<Match> Match { get;set; }
 
         public async Task OnGetAsync()
         {
-            TwoPersonMatch = await _context.TwoPersonMatch.ToListAsync();
+            Match = await _context.Match.ToListAsync();
         }
     }
 }

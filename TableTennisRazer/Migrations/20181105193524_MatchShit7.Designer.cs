@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TableTennisRazer.Models;
 
 namespace TableTennisRazer.Migrations
 {
     [DbContext(typeof(TableTennisRazerContext))]
-    partial class TableTennisRazerContextModelSnapshot : ModelSnapshot
+    [Migration("20181105193524_MatchShit7")]
+    partial class MatchShit7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TableTennisRazer.Models;
 
-namespace TableTennisRazer.Pages.FourPersonMatches
+namespace TableTennisRazer.Pages.Matches
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace TableTennisRazer.Pages.FourPersonMatches
         }
 
         [BindProperty]
-        public FourPersonMatch FourPersonMatch { get; set; }
+        public Match Match { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,9 @@ namespace TableTennisRazer.Pages.FourPersonMatches
                 return NotFound();
             }
 
-            FourPersonMatch = await _context.FourPersonMatch.FirstOrDefaultAsync(m => m.MatchID == id);
+            Match = await _context.Match.FirstOrDefaultAsync(m => m.MatchID == id);
 
-            if (FourPersonMatch == null)
+            if (Match == null)
             {
                 return NotFound();
             }
@@ -45,7 +45,7 @@ namespace TableTennisRazer.Pages.FourPersonMatches
                 return Page();
             }
 
-            _context.Attach(FourPersonMatch).State = EntityState.Modified;
+            _context.Attach(Match).State = EntityState.Modified;
 
             try
             {
@@ -53,7 +53,7 @@ namespace TableTennisRazer.Pages.FourPersonMatches
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FourPersonMatchExists(FourPersonMatch.MatchID))
+                if (!MatchExists(Match.MatchID))
                 {
                     return NotFound();
                 }
@@ -66,9 +66,9 @@ namespace TableTennisRazer.Pages.FourPersonMatches
             return RedirectToPage("./Index");
         }
 
-        private bool FourPersonMatchExists(int id)
+        private bool MatchExists(int id)
         {
-            return _context.FourPersonMatch.Any(e => e.MatchID == id);
+            return _context.Match.Any(e => e.MatchID == id);
         }
     }
 }

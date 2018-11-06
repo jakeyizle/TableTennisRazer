@@ -10,4 +10,8 @@
     <PackageReference Include="Moserware.Skills" Version="1.0.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\MatchPeople\" />
+  </ItemGroup>
+
 </Project>

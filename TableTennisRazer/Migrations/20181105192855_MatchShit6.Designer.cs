@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TableTennisRazer.Models;
 
 namespace TableTennisRazer.Migrations
 {
     [DbContext(typeof(TableTennisRazerContext))]
-    partial class TableTennisRazerContextModelSnapshot : ModelSnapshot
+    [Migration("20181105192855_MatchShit6")]
+    partial class MatchShit6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,26 +44,28 @@ namespace TableTennisRazer.Migrations
 
                     b.Property<int>("MatchResult");
 
+                    b.Property<string>("PersonName")
+                        .IsRequired();
+
                     b.HasKey("PersonId", "MatchId");
 
                     b.HasIndex("MatchId");
+
+                    b.HasIndex("PersonName");
 
                     b.ToTable("MatchPerson");
                 });
 
             modelBuilder.Entity("TableTennisRazer.Models.Person", b =>
                 {
-                    b.Property<int>("PersonId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("PersonName")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<double>("Mean");
 
-                    b.Property<string>("PersonName");
-
                     b.Property<double>("StandardDeviation");
 
-                    b.HasKey("PersonId");
+                    b.HasKey("PersonName");
 
                     b.ToTable("Person");
                 });
@@ -75,7 +79,7 @@ namespace TableTennisRazer.Migrations
 
                     b.HasOne("TableTennisRazer.Models.Person", "Person")
                         .WithMany("MatchPeople")
-                        .HasForeignKey("PersonId")
+                        .HasForeignKey("PersonName")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

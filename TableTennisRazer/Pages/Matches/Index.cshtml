@@ -1,5 +1,5 @@
 ﻿@page
-@model TableTennisRazer.Pages.TwoPersonMatches.IndexModel
+@model TableTennisRazer.Pages.Matches.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -14,34 +14,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TwoPersonMatch[0].WinningScore)
+                @Html.DisplayNameFor(model => model.Match[0].WinningScore)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TwoPersonMatch[0].LosingScore)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TwoPersonMatch[0].WinningPersonOne)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TwoPersonMatch[0].LosingPersonOne)
+                @Html.DisplayNameFor(model => model.Match[0].LosingScore)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.TwoPersonMatch) {
+@foreach (var item in Model.Match) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.WinningScore)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LosingScore)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WinningPersonOne)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LosingPersonOne)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.MatchID">Edit</a> |

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TableTennisRazer.Models;
 
-namespace TableTennisRazer.Pages.FourPersonMatches
+namespace TableTennisRazer.Pages.Matches
 {
     public class CreateModel : PageModel
     {
@@ -24,7 +24,7 @@ namespace TableTennisRazer.Pages.FourPersonMatches
         }
 
         [BindProperty]
-        public FourPersonMatch FourPersonMatch { get; set; }
+        public Match Match { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -33,7 +33,7 @@ namespace TableTennisRazer.Pages.FourPersonMatches
                 return Page();
             }
 
-            _context.FourPersonMatch.Add(FourPersonMatch);
+            _context.Match.Add(Match);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

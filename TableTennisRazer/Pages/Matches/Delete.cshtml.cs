@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using TableTennisRazer.Models;
 
-namespace TableTennisRazer.Pages.FourPersonMatches
+namespace TableTennisRazer.Pages.Matches
 {
     public class DeleteModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace TableTennisRazer.Pages.FourPersonMatches
         }
 
         [BindProperty]
-        public FourPersonMatch FourPersonMatch { get; set; }
+        public Match Match { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,9 @@ namespace TableTennisRazer.Pages.FourPersonMatches
                 return NotFound();
             }
 
-            FourPersonMatch = await _context.FourPersonMatch.FirstOrDefaultAsync(m => m.MatchID == id);
+            Match = await _context.Match.FirstOrDefaultAsync(m => m.MatchID == id);
 
-            if (FourPersonMatch == null)
+            if (Match == null)
             {
                 return NotFound();
             }
@@ -44,11 +44,11 @@ namespace TableTennisRazer.Pages.FourPersonMatches
                 return NotFound();
             }
 
-            FourPersonMatch = await _context.FourPersonMatch.FindAsync(id);
+            Match = await _context.Match.FindAsync(id);
 
-            if (FourPersonMatch != null)
+            if (Match != null)
             {
-                _context.FourPersonMatch.Remove(FourPersonMatch);
+                _context.Match.Remove(Match);
                 await _context.SaveChangesAsync();
             }
 
