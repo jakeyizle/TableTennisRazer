@@ -22,7 +22,7 @@ namespace TableTennisRazer.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {        
             modelBuilder.Entity<MatchPerson>()
-                .HasKey(c => new { c.PersonId, c.MatchId });
+                .HasKey(c => new { c.PersonName, c.MatchId });
             modelBuilder.Entity<Person>()
                 .HasIndex(n => n.PersonName)
                 .IsUnique();

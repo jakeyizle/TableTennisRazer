@@ -15,7 +15,7 @@ namespace TableTennisRazer.Models
     public class MatchPerson
     {
         public int MatchId { get; set; }
-        public int PersonId { get; set; }
+        public string PersonName { get; set; }
         public int MatchResult { get; set; }
 
         public virtual Match Match { get; set; }
@@ -25,10 +25,10 @@ namespace TableTennisRazer.Models
         {
 
         }       
-        public MatchPerson(int matchId, int personId, int result)
+        public MatchPerson(int matchId, string name, int result)
         {
             MatchId = matchId;
-            PersonId = personId;
+            PersonName = name;
             MatchResult = result;
         }
     }

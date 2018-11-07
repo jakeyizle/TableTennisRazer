@@ -11,10 +11,7 @@ namespace TableTennisRazer.Models
 {
     public class Person : Player
     {
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity), Key]
-        public int PersonId { get; set; }
-        //is unique
-        [Display(Name = "Name")]
+        [Key, Display(Name = "Name")]
         public string PersonName { get; set; }
         public double Mean { get; set; }
         public double StandardDeviation { get; set; }
@@ -34,7 +31,7 @@ namespace TableTennisRazer.Models
         public virtual ICollection<MatchPerson> MatchPeople { get; set; }
 
 
-        public Person() : base(new Random())
+        public Person() : base(new Random().NextDouble())
         {
 
         }
@@ -47,13 +44,11 @@ namespace TableTennisRazer.Models
             {
                 Mean = person.Mean;
                 StandardDeviation = person.StandardDeviation;
-                PersonId = person.PersonId;
             }
             else
             {
                 Mean = GameInfo.DefaultGameInfo.InitialMean;
                 StandardDeviation = GameInfo.DefaultGameInfo.InitialStandardDeviation;
-                _context.Person.Add(this);
             }
         }
 

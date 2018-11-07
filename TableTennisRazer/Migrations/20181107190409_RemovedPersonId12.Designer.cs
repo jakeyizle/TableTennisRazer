@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TableTennisRazer.Models;
 
 namespace TableTennisRazer.Migrations
 {
     [DbContext(typeof(TableTennisRazerContext))]
-    partial class TableTennisRazerContextModelSnapshot : ModelSnapshot
+    [Migration("20181107190409_RemovedPersonId12")]
+    partial class RemovedPersonId12
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,15 +38,20 @@ namespace TableTennisRazer.Migrations
 
             modelBuilder.Entity("TableTennisRazer.Models.MatchPerson", b =>
                 {
-                    b.Property<string>("PersonName");
+                    b.Property<int>("PersonId");
 
                     b.Property<int>("MatchId");
 
                     b.Property<int>("MatchResult");
 
-                    b.HasKey("PersonName", "MatchId");
+                    b.Property<string>("PersonName")
+                        .IsRequired();
+
+                    b.HasKey("PersonId", "MatchId");
 
                     b.HasIndex("MatchId");
+
+                    b.HasIndex("PersonName");
 
                     b.ToTable("MatchPeople");
                 });
