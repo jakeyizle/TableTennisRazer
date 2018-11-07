@@ -9,8 +9,8 @@ namespace TableTennisRazer.Models
 {
     public enum Result : int
     {
-        Loss = 1,
-        Win = 2
+        Win = 1,
+        Loss = 2
     }
     public class MatchPerson
     {

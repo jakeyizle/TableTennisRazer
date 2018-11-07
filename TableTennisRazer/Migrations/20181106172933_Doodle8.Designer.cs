@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TableTennisRazer.Models;
 
 namespace TableTennisRazer.Migrations
 {
     [DbContext(typeof(TableTennisRazerContext))]
-    partial class TableTennisRazerContextModelSnapshot : ModelSnapshot
+    [Migration("20181106172933_Doodle8")]
+    partial class Doodle8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,10 +64,6 @@ namespace TableTennisRazer.Migrations
                     b.Property<double>("StandardDeviation");
 
                     b.HasKey("PersonId");
-
-                    b.HasIndex("PersonName")
-                        .IsUnique()
-                        .HasFilter("[PersonName] IS NOT NULL");
 
                     b.ToTable("Person");
                 });
