@@ -17,6 +17,7 @@ namespace TableTennisRazer.Models
         public int MatchId { get; set; }
         public string PersonName { get; set; }
         public int MatchResult { get; set; }
+        public double RatingChange { get; set; }
 
         public virtual Match Match { get; set; }
         public virtual Person Person { get; set; }

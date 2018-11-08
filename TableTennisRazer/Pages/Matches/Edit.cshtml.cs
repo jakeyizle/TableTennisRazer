@@ -29,7 +29,7 @@ namespace TableTennisRazer.Pages.Matches
                 return NotFound();
             }
 
-            Match = await _context.Match.FirstOrDefaultAsync(m => m.MatchID == id);
+            Match = await _context.Match.FirstOrDefaultAsync(m => m.MatchId == id);
 
             if (Match == null)
             {
@@ -53,7 +53,7 @@ namespace TableTennisRazer.Pages.Matches
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MatchExists(Match.MatchID))
+                if (!MatchExists(Match.MatchId))
                 {
                     return NotFound();
                 }
@@ -68,7 +68,7 @@ namespace TableTennisRazer.Pages.Matches
 
         private bool MatchExists(int id)
         {
-            return _context.Match.Any(e => e.MatchID == id);
+            return _context.Match.Any(e => e.MatchId == id);
         }
     }
 }

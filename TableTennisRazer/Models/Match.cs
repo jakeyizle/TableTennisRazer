@@ -9,7 +9,7 @@ namespace TableTennisRazer.Models
 {
     public class Match
     {
-        public int MatchID { get; set; }
+        public int MatchId { get; set; }
         public int? WinningScore { get; set; }
         public int? LosingScore { get; set; }
 

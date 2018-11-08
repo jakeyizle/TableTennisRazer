@@ -43,7 +43,18 @@ namespace TableTennisRazer.Pages.Matches
             MatchPeople = MatchPeople.Where(x => x.Person.PersonName != null).ToList();
             _context.MatchPeople.AttachRange(MatchPeople);
 
+
+
             MatchPeople.ForEach(x => x.Person.GetData(_context));
+
+            foreach (Person person in MatchPeople.Select(x => x.Person))
+            {
+                if (person.Mean > 0 && person.Mean < 1)
+                {
+                    var foo = 2;
+                }
+            }
+
             //foreach (Person person in MatchPeople.Select(x=>x.Person))
             //{
             //    var tempPerson = _context.Person.SingleOrDefault(x => x.PersonName == person.PersonName);
@@ -55,7 +66,9 @@ namespace TableTennisRazer.Pages.Matches
             var newSkills = TrueSkillCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, GetTeams(MatchPeople), (int)Result.Win, (int)Result.Loss);
             for (int i = 0; i < MatchPeople.Count(); i++)
             {
+                double oldRating = MatchPeople[i].Person.Rating.ConservativeRating;
                 MatchPeople[i].Person.Rating = newSkills[MatchPeople[i].Person];
+                MatchPeople[i].RatingChange = MatchPeople[i].Person.Rating.ConservativeRating - oldRating;
                 MatchPeople[i].Match = Match;
                 MatchPeople[i].MatchResult = (i % 2 == 0) ? (int)Result.Loss : (int)Result.Win;
             }

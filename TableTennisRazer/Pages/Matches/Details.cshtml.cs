@@ -27,7 +27,7 @@ namespace TableTennisRazer.Pages.Matches
                 return NotFound();
             }
 
-            Match = await _context.Match.FirstOrDefaultAsync(m => m.MatchID == id);
+            Match = await _context.Match.FirstOrDefaultAsync(m => m.MatchId == id);
 
             if (Match == null)
             {
