@@ -40,8 +40,9 @@ namespace TableTennisRazer.Pages.Matches
             {
                 return Page();
             }
-
             MatchPeople = MatchPeople.Where(x => x.Person.PersonName != null).ToList();
+            _context.MatchPeople.AttachRange(MatchPeople);
+
             MatchPeople.ForEach(x => x.Person.GetData(_context));
             //foreach (Person person in MatchPeople.Select(x=>x.Person))
             //{
@@ -59,11 +60,14 @@ namespace TableTennisRazer.Pages.Matches
                 MatchPeople[i].MatchResult = (i % 2 == 0) ? (int)Result.Loss : (int)Result.Win;
             }
             //_context.Match.Add(Match);
-            _context.MatchPeople.AttachRange(MatchPeople);
-            foreach (Person person in MatchPeople.Select(x => x.Person))
-            {
-                _context.Entry(person).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            }
+            //foreach (Person person in MatchPeople.Select(x => x.Person))
+            //{
+            //    if(_context.Entry(person).State != Microsoft.EntityFrameworkCore.EntityState.Added)
+            //    {
+            //        _context.Entry(person).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            //    }
+            //}
+
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

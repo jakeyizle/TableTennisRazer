@@ -37,7 +37,7 @@ namespace TableTennisRazer.Migrations
                 table: "MatchPeople",
                 column: "MatchId",
                 principalTable: "Match",
-                principalColumn: "MatchID",
+                principalColumn: "MatchId",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
@@ -82,7 +82,7 @@ namespace TableTennisRazer.Migrations
                 table: "MatchPerson",
                 column: "MatchId",
                 principalTable: "Match",
-                principalColumn: "MatchID",
+                principalColumn: "MatchId",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(

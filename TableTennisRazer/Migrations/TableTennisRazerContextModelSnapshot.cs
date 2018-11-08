@@ -15,13 +15,13 @@ namespace TableTennisRazer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.0-preview3-35497")
+                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("TableTennisRazer.Models.Match", b =>
                 {
-                    b.Property<int>("MatchID")
+                    b.Property<int>("MatchId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -29,7 +29,7 @@ namespace TableTennisRazer.Migrations
 
                     b.Property<int?>("WinningScore");
 
-                    b.HasKey("MatchID");
+                    b.HasKey("MatchId");
 
                     b.ToTable("Match");
                 });

@@ -11,7 +11,7 @@ namespace TableTennisRazer.Migrations
                 name: "MatchPerson");
 
             migrationBuilder.AddColumn<int>(
-                name: "MatchID",
+                name: "MatchId",
                 table: "Person",
                 nullable: true);
 
@@ -32,31 +32,31 @@ namespace TableTennisRazer.Migrations
                 nullable: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Person_MatchID",
+                name: "IX_Person_MatchId",
                 table: "Person",
-                column: "MatchID");
+                column: "MatchId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Person_Match_MatchID",
+                name: "FK_Person_Match_MatchId",
                 table: "Person",
-                column: "MatchID",
+                column: "MatchId",
                 principalTable: "Match",
-                principalColumn: "MatchID",
+                principalColumn: "MatchId",
                 onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Person_Match_MatchID",
+                name: "FK_Person_Match_MatchId",
                 table: "Person");
 
             migrationBuilder.DropIndex(
-                name: "IX_Person_MatchID",
+                name: "IX_Person_MatchId",
                 table: "Person");
 
             migrationBuilder.DropColumn(
-                name: "MatchID",
+                name: "MatchId",
                 table: "Person");
 
             migrationBuilder.DropColumn(
@@ -87,7 +87,7 @@ namespace TableTennisRazer.Migrations
                         name: "FK_MatchPerson_Match_MatchId",
                         column: x => x.MatchId,
                         principalTable: "Match",
-                        principalColumn: "MatchID",
+                        principalColumn: "MatchId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_MatchPerson_Person_PersonName",

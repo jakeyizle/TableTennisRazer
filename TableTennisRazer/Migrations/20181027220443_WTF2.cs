@@ -16,14 +16,14 @@ namespace TableTennisRazer.Migrations
                 name: "Match",
                 columns: table => new
                 {
-                    MatchID = table.Column<int>(nullable: false)
+                    MatchId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     WinningScore = table.Column<int>(nullable: false),
                     LosingScore = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Match", x => x.MatchID);
+                    table.PrimaryKey("PK_Match", x => x.MatchId);
                 });
 
             migrationBuilder.CreateTable(
@@ -42,7 +42,7 @@ namespace TableTennisRazer.Migrations
                         name: "FK_MatchPerson_Match_MatchId",
                         column: x => x.MatchId,
                         principalTable: "Match",
-                        principalColumn: "MatchID",
+                        principalColumn: "MatchId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_MatchPerson_Person_PersonId",

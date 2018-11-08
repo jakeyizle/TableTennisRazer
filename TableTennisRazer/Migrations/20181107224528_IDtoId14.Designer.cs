@@ -10,8 +10,8 @@ using TableTennisRazer.Models;
 namespace TableTennisRazer.Migrations
 {
     [DbContext(typeof(TableTennisRazerContext))]
-    [Migration("20181106181814_PErsonIDIncrement10")]
-    partial class PErsonIDIncrement10
+    [Migration("20181107224528_IDtoId14")]
+    partial class IDtoId14
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,13 +38,13 @@ namespace TableTennisRazer.Migrations
 
             modelBuilder.Entity("TableTennisRazer.Models.MatchPerson", b =>
                 {
-                    b.Property<int>("PersonId");
+                    b.Property<string>("PersonName");
 
                     b.Property<int>("MatchId");
 
                     b.Property<int>("MatchResult");
 
-                    b.HasKey("PersonId", "MatchId");
+                    b.HasKey("PersonName", "MatchId");
 
                     b.HasIndex("MatchId");
 
@@ -53,21 +53,17 @@ namespace TableTennisRazer.Migrations
 
             modelBuilder.Entity("TableTennisRazer.Models.Person", b =>
                 {
-                    b.Property<int>("PersonId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("PersonName")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<double>("Mean");
 
-                    b.Property<string>("PersonName");
-
                     b.Property<double>("StandardDeviation");
 
-                    b.HasKey("PersonId");
+                    b.HasKey("PersonName");
 
                     b.HasIndex("PersonName")
-                        .IsUnique()
-                        .HasFilter("[PersonName] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Person");
                 });
@@ -81,7 +77,7 @@ namespace TableTennisRazer.Migrations
 
                     b.HasOne("TableTennisRazer.Models.Person", "Person")
                         .WithMany("MatchPeople")
-                        .HasForeignKey("PersonId")
+                        .HasForeignKey("PersonName")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

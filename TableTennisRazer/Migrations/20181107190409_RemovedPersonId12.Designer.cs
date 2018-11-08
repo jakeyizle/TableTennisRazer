@@ -23,7 +23,7 @@ namespace TableTennisRazer.Migrations
 
             modelBuilder.Entity("TableTennisRazer.Models.Match", b =>
                 {
-                    b.Property<int>("MatchID")
+                    b.Property<int>("MatchId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -31,7 +31,7 @@ namespace TableTennisRazer.Migrations
 
                     b.Property<int?>("WinningScore");
 
-                    b.HasKey("MatchID");
+                    b.HasKey("MatchId");
 
                     b.ToTable("Match");
                 });

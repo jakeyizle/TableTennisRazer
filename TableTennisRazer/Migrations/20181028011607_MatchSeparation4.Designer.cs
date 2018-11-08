@@ -23,7 +23,7 @@ namespace TableTennisRazer.Migrations
 
             modelBuilder.Entity("TableTennisRazer.Models.Match", b =>
                 {
-                    b.Property<int>("MatchID")
+                    b.Property<int>("MatchId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -38,7 +38,7 @@ namespace TableTennisRazer.Migrations
 
                     b.Property<int>("WinningScore");
 
-                    b.HasKey("MatchID");
+                    b.HasKey("MatchId");
 
                     b.ToTable("Match");
 
@@ -50,7 +50,7 @@ namespace TableTennisRazer.Migrations
                     b.Property<string>("PersonName")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("MatchID");
+                    b.Property<int?>("MatchId");
 
                     b.Property<double>("Mean");
 
@@ -58,7 +58,7 @@ namespace TableTennisRazer.Migrations
 
                     b.HasKey("PersonName");
 
-                    b.HasIndex("MatchID");
+                    b.HasIndex("MatchId");
 
                     b.ToTable("Person");
                 });
@@ -87,7 +87,7 @@ namespace TableTennisRazer.Migrations
                 {
                     b.HasOne("TableTennisRazer.Models.Match")
                         .WithMany("People")
-                        .HasForeignKey("MatchID");
+                        .HasForeignKey("MatchId");
                 });
 #pragma warning restore 612, 618
         }
