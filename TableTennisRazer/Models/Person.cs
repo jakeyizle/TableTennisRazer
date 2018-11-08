@@ -30,7 +30,7 @@ namespace TableTennisRazer.Models
         }
         public virtual ICollection<MatchPerson> MatchPeople { get; set; }
 
-        //Player class must have unique id, but must only be consistent for match calculations
+        //Player class must have unique id, but it need only be consistent for rating calculator
         public Person() : base(new Random().NextDouble())
         {
 
@@ -54,13 +54,9 @@ namespace TableTennisRazer.Models
 
         public void GetData(TableTennisRazerContext _context)
         {
-            var person = _context.Person.SingleOrDefault(x => x.PersonName == PersonName);
-            if (person != null)
-            {
-                Mean = person.Mean;
-                StandardDeviation = person.StandardDeviation;
-            }
-            else
+
+            _context.Entry(this).Reload();
+            if (Mean == 0 && StandardDeviation == 0)
             {
                 Mean = GameInfo.DefaultGameInfo.InitialMean;
                 StandardDeviation = GameInfo.DefaultGameInfo.InitialStandardDeviation;

@@ -40,29 +40,11 @@ namespace TableTennisRazer.Pages.Matches
             {
                 return Page();
             }
+
             MatchPeople = MatchPeople.Where(x => x.Person.PersonName != null).ToList();
-            _context.MatchPeople.AttachRange(MatchPeople);
-
-
-
+            _context.MatchPeople.AttachRange(MatchPeople);            
             MatchPeople.ForEach(x => x.Person.GetData(_context));
 
-            foreach (Person person in MatchPeople.Select(x => x.Person))
-            {
-                if (person.Mean > 0 && person.Mean < 1)
-                {
-                    var foo = 2;
-                }
-            }
-
-            //foreach (Person person in MatchPeople.Select(x=>x.Person))
-            //{
-            //    var tempPerson = _context.Person.SingleOrDefault(x => x.PersonName == person.PersonName);
-            //    if (tempPerson == null)
-            //    {
-            //        person.
-            //    }
-            //}
             var newSkills = TrueSkillCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, GetTeams(MatchPeople), (int)Result.Win, (int)Result.Loss);
             for (int i = 0; i < MatchPeople.Count(); i++)
             {
@@ -72,17 +54,8 @@ namespace TableTennisRazer.Pages.Matches
                 MatchPeople[i].Match = Match;
                 MatchPeople[i].MatchResult = (i % 2 == 0) ? (int)Result.Loss : (int)Result.Win;
             }
-            //_context.Match.Add(Match);
-            //foreach (Person person in MatchPeople.Select(x => x.Person))
-            //{
-            //    if(_context.Entry(person).State != Microsoft.EntityFrameworkCore.EntityState.Added)
-            //    {
-            //        _context.Entry(person).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            //    }
-            //}
 
             await _context.SaveChangesAsync();
-
             return RedirectToPage("./Index");
         }
 
@@ -98,11 +71,12 @@ namespace TableTennisRazer.Pages.Matches
             else
             {
                 var winTeam = new Team();
-                var loseTeam = new Team();
                 winTeam.AddPlayer(people[0], people[0].Rating);
-                winTeam.AddPlayer(people[1], people[1].Rating);
-                loseTeam.AddPlayer(people[3], people[0].Rating);
-                loseTeam.AddPlayer(people[4], people[0].Rating);
+                winTeam.AddPlayer(people[2], people[2].Rating);
+                winTeam.AsDictionary().Where(x => x.Key == people[0]);
+                var loseTeam = new Team();
+                loseTeam.AddPlayer(people[1], people[1].Rating);
+                loseTeam.AddPlayer(people[3], people[3].Rating);
                 return Teams.Concat(winTeam, loseTeam);
             }
         }
