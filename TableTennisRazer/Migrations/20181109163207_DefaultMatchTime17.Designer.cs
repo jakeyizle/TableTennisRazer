@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TableTennisRazer.Models;
 
 namespace TableTennisRazer.Migrations
 {
     [DbContext(typeof(TableTennisRazerContext))]
-    partial class TableTennisRazerContextModelSnapshot : ModelSnapshot
+    [Migration("20181109163207_DefaultMatchTime17")]
+    partial class DefaultMatchTime17
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,10 +28,6 @@ namespace TableTennisRazer.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("LosingScore");
-
-                    b.Property<DateTime>("Time")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("getdate()");
 
                     b.Property<int?>("WinningScore");
 
@@ -47,6 +45,10 @@ namespace TableTennisRazer.Migrations
                     b.Property<int>("MatchResult");
 
                     b.Property<double>("RatingChange");
+
+                    b.Property<DateTime>("Time")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getdate()");
 
                     b.HasKey("PersonName", "MatchId");
 

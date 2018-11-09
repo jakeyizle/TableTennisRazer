@@ -15,9 +15,21 @@ namespace TableTennisRazer.Models
     public class MatchPerson
     {
         public int MatchId { get; set; }
+        [Display(Name = "Name")]
         public string PersonName { get; set; }
+        [Display(Name = "Match Result")]
         public int MatchResult { get; set; }
+        [Display(Name = "Rating Change")]
         public double RatingChange { get; set; }
+        [NotMapped]
+        public Result Result
+        {
+            get
+            {
+                return (Result)MatchResult;
+            }
+        }
+
 
         public virtual Match Match { get; set; }
         public virtual Person Person { get; set; }
@@ -31,6 +43,19 @@ namespace TableTennisRazer.Models
             MatchId = matchId;
             PersonName = name;
             MatchResult = result;
+        }
+
+        public string MatchResultAsString()
+        {
+            if (MatchResult == (int)Result.Win)
+            {
+                return "Win";
+            }
+            else
+            {
+                return "Lose";
+            }
+
         }
     }
 }

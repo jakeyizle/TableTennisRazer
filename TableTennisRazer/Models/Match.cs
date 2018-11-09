@@ -12,7 +12,7 @@ namespace TableTennisRazer.Models
         public int MatchId { get; set; }
         public int? WinningScore { get; set; }
         public int? LosingScore { get; set; }
-
+        public DateTime Time { get; set; }
         public virtual ICollection<MatchPerson> MatchPeople { get; set; }
     }
 }

@@ -52,11 +52,11 @@ namespace TableTennisRazer.Pages.Matches
                 MatchPeople[i].Person.Rating = newSkills[MatchPeople[i].Person];
                 MatchPeople[i].RatingChange = MatchPeople[i].Person.Rating.ConservativeRating - oldRating;
                 MatchPeople[i].Match = Match;
-                MatchPeople[i].MatchResult = (i % 2 == 0) ? (int)Result.Loss : (int)Result.Win;
+                MatchPeople[i].MatchResult = (i % 2) + 1;
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Result");
         }
 
         IEnumerable<IDictionary<Player, Rating>> GetTeams(List<MatchPerson> matchPeople)
