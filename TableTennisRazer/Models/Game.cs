@@ -10,12 +10,18 @@ namespace TableTennisRazer.Models
         public string Score;
         public string WinningTeam;
         public string LosingTeam;
-        public DateTime Time;
-
-
-        public Game(int? winningScore, int? losingScore, List<MatchPerson> matchPeople, DateTime time)
+        DateTime time;
+        public DateTime Time
         {
-            Time = time;
+            get
+            {
+                return time.ToLocalTime();
+            }
+        }
+
+        public Game(int? winningScore, int? losingScore, List<MatchPerson> matchPeople, DateTime _time)
+        {
+            time = _time;
             Score = winningScore.ToString() + " - " + losingScore.ToString();
             if (matchPeople.Count() == 4)
             {

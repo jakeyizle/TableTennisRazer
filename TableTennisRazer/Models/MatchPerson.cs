@@ -15,12 +15,17 @@ namespace TableTennisRazer.Models
     public class MatchPerson
     {
         public int MatchId { get; set; }
+
         [Display(Name = "Name")]
         public string PersonName { get; set; }
+
         [Display(Name = "Match Result")]
         public int MatchResult { get; set; }
+
         [Display(Name = "Rating Change")]
+        [DisplayFormat(DataFormatString = "{0:0.000}")]
         public double RatingChange { get; set; }
+
         [NotMapped]
         public Result Result
         {
@@ -38,24 +43,5 @@ namespace TableTennisRazer.Models
         {
 
         }       
-        public MatchPerson(int matchId, string name, int result)
-        {
-            MatchId = matchId;
-            PersonName = name;
-            MatchResult = result;
-        }
-
-        public string MatchResultAsString()
-        {
-            if (MatchResult == (int)Result.Win)
-            {
-                return "Win";
-            }
-            else
-            {
-                return "Lose";
-            }
-
-        }
     }
 }

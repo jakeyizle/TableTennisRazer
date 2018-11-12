@@ -23,10 +23,10 @@ namespace TableTennisRazer.Pages.Matches
         public int LossCount { get; set; }
         public List<Game> GameList { get; set; }
 
-        //yeah this is dirt as fuck.
+        //yeah this is dirty as fuck.
+        //gets the latest match, then gets the match history between the 2 teams
         public async Task<IActionResult> OnGetAsync()
         {
-            GameList = new List<Game>();
             var match = await _context.Match.OrderBy(x=>x.MatchId).LastOrDefaultAsync();
             MatchPeople = await _context.MatchPeople.Where(x => x.MatchId == match.MatchId).OrderBy(y=>y.MatchResult).ToListAsync();
             MatchPeople.ForEach(x => x.Person =  _context.Person.FirstOrDefault(p => p.PersonName == x.PersonName));
@@ -34,16 +34,24 @@ namespace TableTennisRazer.Pages.Matches
             var names = MatchPeople.Select(x => x.PersonName);
             var matchIds = await _context.Match.Select(x=>x.MatchId).ToListAsync();
             List<MatchPerson> AllMatches = new List<MatchPerson>();
+            GameList = new List<Game>();
+
             if (MatchPeople.Count() == 4)
             {
                 foreach (int matchId in matchIds)
                 {
                     var matchPeople = await _context.MatchPeople.Where(x => x.MatchId == matchId).ToListAsync();
+                    if (Enumerable.SequenceEqual(matchPeople.OrderBy(t => t.MatchResult).Select(x => x.PersonName), 
+                                                 MatchPeople.OrderBy(t => t.MatchResult).Select(x => x.PersonName)))
+                    {
+                        var foo = 3;
+                    }
+
                     if (Enumerable.SequenceEqual(matchPeople.Select(x => x.PersonName).OrderBy(t => t), names.OrderBy(t => t)))
                     {
                         if (matchPeople.First(x => x.PersonName == MatchPeople[0].PersonName).Result
                             == matchPeople.First(x => x.PersonName == MatchPeople[1].PersonName).Result
-                            && ((matchPeople.First(x => x.PersonName == MatchPeople[2].PersonName).Result)
+                            && (matchPeople.First(x => x.PersonName == MatchPeople[2].PersonName).Result
                             == matchPeople.First(x => x.PersonName == MatchPeople[3].PersonName).Result))
                         {
                             matchPeople.ForEach(x => AllMatches.Add(x));

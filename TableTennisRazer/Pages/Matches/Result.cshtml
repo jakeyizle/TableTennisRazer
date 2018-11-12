@@ -20,38 +20,43 @@
                 @Html.DisplayNameFor(model => model.MatchPeople[0].MatchResult)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MatchPeople[0].RatingChange)
+                @Html.DisplayName("New Rating")
             </th>
             <th>
-                @Html.DisplayName("New Rating")
+                @Html.DisplayNameFor(model => model.MatchPeople[0].RatingChange)
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.MatchPeople)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PersonName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Result)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RatingChange)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Person.Rating.ConservativeRating)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Result)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.ConservativeRating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RatingChange)
+            </td>
+        </tr>
         }
     </tbody>
 </table>
-@Html.Display("Current game count is: " + Model.WinCount + " - " + Model.LossCount)
-<h4> Previous Games</h4>
+<div>
+    @Html.DisplayName("Current game count is: " + Model.WinCount + " - " + Model.LossCount)
+</div>
+
+
+<h4>Match History</h4>
+
 <table class="table">
     <thread>
-        <tr>
+        <tr> 
             <th>
                 @Html.DisplayNameFor(model => model.GameList[0].WinningTeam)
             </th>
@@ -64,7 +69,7 @@
         </tr>
     </thread>
     <tbody>
-        @foreach (var item in Model.GameList.OrderByDescending(x=>x.Time))
+        @foreach (var item in Model.GameList.OrderByDescending(x => x.Time))
         {
             <tr>
                 <td>
