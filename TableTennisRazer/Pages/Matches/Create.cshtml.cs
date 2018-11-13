@@ -44,7 +44,8 @@ namespace TableTennisRazer.Pages.Matches
             MatchPeople = MatchPeople.Where(x => x.Person.PersonName != null).ToList();
             _context.MatchPeople.AttachRange(MatchPeople);            
             MatchPeople.ForEach(x => x.Person.GetData(_context));
-
+            
+            //abstract this, this is used in Leaderboard
             var newSkills = TrueSkillCalculator.CalculateNewRatings(GameInfo.DefaultGameInfo, GetTeams(MatchPeople), (int)Result.Win, (int)Result.Loss);
             for (int i = 0; i < MatchPeople.Count(); i++)
             {

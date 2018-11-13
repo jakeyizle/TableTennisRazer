@@ -30,20 +30,20 @@
     <tbody>
         @foreach (var item in Model.MatchPeople)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PersonName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Result)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Person.ConservativeRating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RatingChange)
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Result)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Person.ConservativeRating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RatingChange)
+                </td>
+            </tr>
         }
     </tbody>
 </table>
@@ -56,7 +56,7 @@
 
 <table class="table">
     <thread>
-        <tr> 
+        <tr>
             <th>
                 @Html.DisplayNameFor(model => model.GameList[0].WinningTeam)
             </th>
@@ -85,3 +85,4 @@
         }
     </tbody>
 </table>
+

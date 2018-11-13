@@ -23,7 +23,7 @@ namespace TableTennisRazer.Pages.Matches
         public int LossCount { get; set; }
         public List<Game> GameList { get; set; }
 
-        //yeah this is dirty as fuck.
+        //todo: unfuck this
         //gets the latest match, then gets the match history between the 2 teams
         public async Task<IActionResult> OnGetAsync()
         {
@@ -41,12 +41,6 @@ namespace TableTennisRazer.Pages.Matches
                 foreach (int matchId in matchIds)
                 {
                     var matchPeople = await _context.MatchPeople.Where(x => x.MatchId == matchId).ToListAsync();
-                    if (Enumerable.SequenceEqual(matchPeople.OrderBy(t => t.MatchResult).Select(x => x.PersonName), 
-                                                 MatchPeople.OrderBy(t => t.MatchResult).Select(x => x.PersonName)))
-                    {
-                        var foo = 3;
-                    }
-
                     if (Enumerable.SequenceEqual(matchPeople.Select(x => x.PersonName).OrderBy(t => t), names.OrderBy(t => t)))
                     {
                         if (matchPeople.First(x => x.PersonName == MatchPeople[0].PersonName).Result

@@ -1,0 +1,20 @@
+﻿@page
+@model TableTennisRazer.Pages.Leaderboard.LeaderboardModel
+
+@{
+    ViewData["Title"] = "Leaderboard";
+}
+<h2>Leaderboard</h2>
+
+<div>
+    <h4>MatchPerson</h4>
+</div>
+<div><canvas id="lineChart"></canvas></div>
+@{ChartJSCore.Models.Chart chart = Model.chart; }
+
+@section Scripts{
+    <script src="~/lib/Chart.js/Chart.js"></script>
+    <script>
+        @Html.Raw(chart.CreateChartCode("lineChart"));
+    </script>
+}
