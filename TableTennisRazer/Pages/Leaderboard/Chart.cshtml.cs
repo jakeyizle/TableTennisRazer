@@ -33,8 +33,11 @@ namespace TableTennisRazer.Pages.Leaderboard
 
             List<LineScatterDataset> datasets = new List<LineScatterDataset>();
             People.ForEach(x => datasets.Add(new LineScatterDataset()
-            { Label = x.PersonName, Data = new List<LineScatterData>(), Fill = "false",
-                BorderColor = GetColorString()
+            {
+                Label = x.PersonName,
+                Data = new List<LineScatterData>(),
+                Fill = "false",
+                BorderColor = GetColorString(),
             }));
 
             Dictionary<Person, double> ratingDict = new Dictionary<Person, double>();
@@ -58,8 +61,31 @@ namespace TableTennisRazer.Pages.Leaderboard
             data.Datasets = new List<Dataset>();
             datasets.ForEach(x => data.Datasets.Add(x));
 
-            chart.Data = data;
 
+
+            Options options = new Options()
+            {
+                Scales = new Scales()
+            };
+
+            Scales scales = new Scales()
+            {
+                XAxes = new List<Scale>()
+                {
+                    new CartesianScale()
+                },
+                YAxes = new List<Scale>()
+                {
+                    new CartesianScale()
+                }
+            };
+
+
+            CartesianScale xAxes = new CartesianScale() { ScaleLabel = new ScaleLabel { LabelString = "Time" }, Ticks = new CartesianLinearTick() { Max = Double.Parse(DateTime.Now.ToLocalTime().AddHours(4).ToString()) } };
+            scales.XAxes = new List<Scale>() { xAxes };
+            options.Scales = scales;
+            chart.Options = options;
+            chart.Data = data;
 
             return Page();
         }

@@ -17,9 +17,5 @@
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Leaderboard\" />
-    <Folder Include="Pages\MatchPeople\" />
-  </ItemGroup>
 
 </Project>
