@@ -24,7 +24,7 @@ namespace TableTennisRazer.Pages.Leaderboard
 
         public async Task<IActionResult> OnGetAsync()
         {
-            //todo: abstract this, currently copy and paste from matchcreate
+            //todo: fix the goddamn chart
             //Initalize people with defaults
             var Matches = await _context.Match.OrderBy(x => x.Time).ToListAsync();
 
@@ -40,6 +40,10 @@ namespace TableTennisRazer.Pages.Leaderboard
                 BorderColor = GetColorString(),
             }));
 
+            var baseTime = Matches[0].Time;
+            var endTime = Matches.Last().Time - baseTime;
+
+
             Dictionary<Person, double> ratingDict = new Dictionary<Person, double>();
             People.ForEach(x => ratingDict.Add(x, x.ConservativeRating));
             foreach (var Match in Matches)
@@ -48,9 +52,10 @@ namespace TableTennisRazer.Pages.Leaderboard
                 var matchPeople = _context.MatchPeople.Where(x => x.MatchId == Match.MatchId).ToList();
                 foreach(MatchPerson matchPerson in matchPeople)
                 {
+                    TimeSpan interval = matchPerson.Match.Time - baseTime;
                     ratingDict[matchPerson.Person] += matchPerson.RatingChange;
                     var lineScatterData = new LineScatterData()
-                    { x = Match.Time.ToLocalTime().ToString(), y = Math.Round(ratingDict[matchPerson.Person], 3).ToString() };
+                    { x = interval.TotalMinutes.ToString(), y = Math.Round(ratingDict[matchPerson.Person], 3).ToString() };
 
                     datasets.Single(x => x.Label == matchPerson.PersonName).Data.Add(lineScatterData);
                 }
@@ -59,34 +64,56 @@ namespace TableTennisRazer.Pages.Leaderboard
             chart.Type = "line";
             Data data = new Data();
             data.Datasets = new List<Dataset>();
-            datasets.ForEach(x => data.Datasets.Add(x));
-
-
+            data.Datasets.Add(datasets[1]);
+            //datasets.ForEach(x => data.Datasets.Add(x));
+            chart.Data = data;
 
             Options options = new Options()
-            {
+            {                
+                Responsive = true,
+                MaintainAspectRatio = false,
                 Scales = new Scales()
-            };
+                {                    
+                    XAxes = new List<Scale>()
+                    {
+                        new CartesianScale()
+                        {
+                            Display = true,
+                            Ticks = new LogarithmicTick()
+                            {
+                                Display = true,
+                                //Max = 1,
+                            },
+                            ScaleLabel = new ScaleLabel()
+                            {
+                                Display = true,
+                                LabelString = "X AXIS",
+                                FontSize = 20
+                            }
+                        }
+                    },
+                    YAxes = new List<Scale>()
+                    {
+                        new CartesianScale()
+                        {
+                            Display = true,
+                            Ticks = new CartesianLinearTick()
+                            {
+                                Display = true,
+                            },
+                            ScaleLabel = new ScaleLabel()
+                            {
+                                Display = true,
+                                LabelString = "Y AXIS",
+                                FontSize = 20
 
-            Scales scales = new Scales()
-            {
-                XAxes = new List<Scale>()
-                {
-                    new CartesianScale()
-                },
-                YAxes = new List<Scale>()
-                {
-                    new CartesianScale()
+                            }
+                        }
+                    }
                 }
             };
 
-
-            CartesianScale xAxes = new CartesianScale() { ScaleLabel = new ScaleLabel { LabelString = "Time" }, Ticks = new CartesianLinearTick() { Max = Double.Parse(DateTime.Now.ToLocalTime().AddHours(4).ToString()) } };
-            scales.XAxes = new List<Scale>() { xAxes };
-            options.Scales = scales;
             chart.Options = options;
-            chart.Data = data;
-
             return Page();
         }
 

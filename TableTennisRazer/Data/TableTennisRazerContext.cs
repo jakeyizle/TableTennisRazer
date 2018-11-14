@@ -24,7 +24,7 @@ namespace TableTennisRazer.Models
             modelBuilder.Entity<MatchPerson>()
                 .HasKey(m => new { m.PersonName, m.MatchId });
             modelBuilder.Entity<Match>()
-                .Property(m => m.Time)
+                .Property(m => m.time)
                 .HasDefaultValueSql("getdate()");
             modelBuilder.Entity<Person>()
                 .HasIndex(p => p.PersonName)
