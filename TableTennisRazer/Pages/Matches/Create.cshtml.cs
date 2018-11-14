@@ -42,6 +42,7 @@ namespace TableTennisRazer.Pages.Matches
             }
 
             MatchPeople = MatchPeople.Where(x => x.Person.PersonName != null).ToList();
+            MatchPeople.ForEach(x => x.Person.PersonName = FirstCharToUpper(x.Person.PersonName));
             _context.MatchPeople.AttachRange(MatchPeople);            
             MatchPeople.ForEach(x => x.Person.GetData(_context));
             
@@ -80,6 +81,11 @@ namespace TableTennisRazer.Pages.Matches
                 loseTeam.AddPlayer(people[3], people[3].Rating);
                 return Teams.Concat(winTeam, loseTeam);
             }
+        }
+
+        string FirstCharToUpper(string s)
+        {
+            return char.ToUpper(s[0]) + s.Substring(1).ToLower();
         }
     }
 }

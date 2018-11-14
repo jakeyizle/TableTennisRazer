@@ -55,7 +55,7 @@ namespace TableTennisRazer.Pages.Leaderboard
                     TimeSpan interval = matchPerson.Match.Time - baseTime;
                     ratingDict[matchPerson.Person] += matchPerson.RatingChange;
                     var lineScatterData = new LineScatterData()
-                    { x = interval.TotalMinutes.ToString(), y = Math.Round(ratingDict[matchPerson.Person], 3).ToString() };
+                    { x = Match.Time.ToString(), y = Math.Round(ratingDict[matchPerson.Person], 3).ToString() };
 
                     datasets.Single(x => x.Label == matchPerson.PersonName).Data.Add(lineScatterData);
                 }
@@ -79,9 +79,10 @@ namespace TableTennisRazer.Pages.Leaderboard
                         new CartesianScale()
                         {
                             Display = true,
-                            Ticks = new LogarithmicTick()
+                            Ticks = new TimeTick()
                             {
                                 Display = true,
+                                Source = "auto"
                                 //Max = 1,
                             },
                             ScaleLabel = new ScaleLabel()
